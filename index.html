@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <!-- main css -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- fontawesome cdn for icons -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- this hides after js is executed. Warn the user if Js is disabled as it is required -->
+    <p id="no-js-error">
+      Failed to execute JS. Please enable JavaScript to use this site.
+    </p>
+
+    <div class="time-end-wraper">
+      <p id="workEnd" class="time-end">Work session finished.</p>
+    </div>
+    <div class="time-end-wraper">
+      <p id="breakEnd" class="time-end">Break session finished.</p>
+    </div>
+
+    <!-- top section -->
+    <div class="top-section">
+      <h1 class="logo-text">Pomodora</h1>
+      <div class="local-time">
+        <p id="localTime">Local time: fetching</p>
+      </div>
+    </div>
+
+    <!-- main timer -->
+    <div class="timer" id="timer">
+      <span class="minutes" id="minutes">00</span><span class="colon">:</span
+      ><span class="seconds" id="seconds">00</span>
+    </div>
+
+    <div class="bottom-section">
+      <!-- bottom left texts -->
+      <div class="bottom-left-texts">
+        <div class="time-type bottom-left-text">
+          <p id="time-type-text">Work Time</p>
+        </div>
+        <div class="sessions-left bottom-left-text">
+          <p id="sessions-left-text">Sessions:</p>
+        </div>
+      </div>
+      <!-- bottom buttons -->
+      <div class="control-buttons">
+        <div class="control-btn" id="pause-play-btn">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="control-btn" id="add-one-min-btn">
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="control-btn" id="skip-btn">
+          <i class="fas fa-forward"></i>
+        </div>
+        <div class="control-btn" id="reset-btn">
+          <i class="fas fa-redo-alt"></i>
+        </div>
+        <div class="control-btn" id="settings-btn">
+          <i class="fas fa-cog"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- settings menu -->
+    <div id="settings-menu">
+      <div class="menu-content">
+        <h2 class="menu-title">Settings</h2>
+        <form action="">
+          <div class="settings-option">
+            <label for="work-time">Time for work</label>
+            <input
+              type="number"
+              class="text-input"
+              id="work-time"
+              placeholder="minutes"
+            />
+          </div>
+          <div class="settings-option">
+            <label for="break-time">Time for break</label>
+            <input
+              type="number"
+              class="text-input"
+              id="break-time"
+              placeholder="minutes"
+            />
+          </div>
+          <div class="settings-option">
+            <label for="long-break-time">Time for long break</label>
+            <input
+              type="number"
+              class="text-input"
+              id="long-break-time"
+              placeholder="minutes"
+            />
+          </div>
+          <div class="settings-option">
+            <label for="sound-toggle" class="checkbox-label"
+              >Enable sounds</label
+            >
+            <input type="checkbox" class="checkbox" id="sound-toggle" />
+            <div class="checkbox-box"></div>
+          </div>
+          <div class="settings-option">
+            <label for="auto-work-toggle" class="checkbox-label"
+              >Auto start work</label
+            >
+            <input type="checkbox" class="checkbox" id="auto-work-toggle" />
+            <div class="checkbox-box"></div>
+          </div>
+          <div class="settings-option">
+            <label for="auto-break-toggle" class="checkbox-label"
+              >Auto start break</label
+            >
+            <input type="checkbox" class="checkbox" id="auto-break-toggle" />
+            <div class="checkbox-box"></div>
+          </div>
+          <div class="settings-option">
+            <label for="primary-color-picker">Primary color</label>
+            <div class="color-picker-bg" id="primary-color-picker-bg">
+              <input
+                type="color"
+                name="primary-color-picker"
+                id="primary-color-picker"
+                class="color-picker"
+              />
+            </div>
+          </div>
+          <div class="settings-option">
+            <label for="muted-color-picker">Muted color</label>
+            <div class="color-picker-bg" id="muted-color-picker-bg">
+              <input
+                type="color"
+                name="muted-color-picker"
+                id="muted-color-picker"
+                class="color-picker"
+              />
+            </div>
+          </div>
+          <div class="settings-option">
+            <label for="secondary-color-picker">Secondary color</label>
+            <div class="color-picker-bg" id="secondary-color-picker-bg">
+              <input
+                type="color"
+                name="secondary-color-picker"
+                id="secondary-color-picker"
+                class="color-picker"
+              />
+            </div>
+          </div>
+          <div class="settings-option">
+            <label for="background-color-picker">Backgound color</label>
+            <div class="color-picker-bg" id="background-color-picker-bg">
+              <input
+                type="color"
+                name="background-color-picker"
+                id="background-color-picker"
+                class="color-picker"
+              />
+            </div>
+          </div>
+        </form>
+        <div class="menu-buttons">
+          <div class="settings-option">
+            <input
+              type="button"
+              class="bg-not-filled-button"
+              id="settings-reset"
+              value="Reset"
+            />
+          </div>
+          <div class="settings-option">
+            <input
+              type="button"
+              class="bg-not-filled-button"
+              id="settings-cancel"
+              value="Cancel"
+            />
+          </div>
+          <div class="settings-option">
+            <input
+              type="button"
+              class="bg-filled-button"
+              id="settings-save"
+              value="Save"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- main script-->
+    <script src="script.js"></script>
+  </body>
+</html>
